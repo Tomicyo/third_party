@@ -1,0 +1,27 @@
+environment:
+  access_token:
+    secure: '3rF8FPg54v8qs8V8FuPNGnCqm0r7JhLOoZRe4TrLHb94TVTLwHSdkzcH6RauNrD4'
+  matrix:
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+
+build_script: build_windows64.bat nopause
+
+artifacts:
+  - path: artifacts
+    name: third_party
+
+build:
+  parallel: true
+  verbosity: minimal
+
+deploy:
+- provider: GitHub
+  tag: v$(appveyor_build_version)
+  release: v$(appveyor_build_version)
+  description: Windows Release
+  auth_token:
+    secure: '3rF8FPg54v8qs8V8FuPNGnCqm0r7JhLOoZRe4TrLHb94TVTLwHSdkzcH6RauNrD4'
+  artifact: third_party
+  prerelease: false
+  draft: true
+  force_update: true 

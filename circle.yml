@@ -1,0 +1,29 @@
+general:
+  branches:
+    ignore:
+      - gh-pages # list of branches to ignore
+machine:
+  environment:
+    ANDROID_HOME: /usr/local/android-sdk-linux
+    ANDROID_NDK_HOME: /usr/local/android-sdk-linux/ndk-bundle
+    CMAKE_DIR: /usr/local/android-sdk-linux/cmake
+
+dependencies:
+  override:
+    - wget -O cmake.zip https://dl.google.com/android/repository/cmake-3.6.3155560-linux-x86_64.zip
+    - mkdir /usr/local/android-sdk-linux/cmake
+    - unzip cmake.zip -d /usr/local/android-sdk-linux/cmake
+    - /usr/local/android-sdk-linux/cmake/bin/cmake --version
+    - $CMAKE_DIR/bin/ninja --version
+    - wget -O ndk.zip https://dl.google.com/android/repository/android-ndk-r13b-linux-x86_64.zip
+    - unzip ndk.zip -d .
+    - mv android-ndk-r13b /usr/local/android-sdk-linux/ndk-bundle
+test:
+    override:
+        - chmod 777 build_android.sh && ./build_android.sh
+
+#deployment:
+#  master:
+#    branch: master
+#    commands:
+#      - chmod 777 deploy_android.sh && ./deploy_android.sh

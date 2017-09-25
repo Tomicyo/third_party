@@ -1,0 +1,8 @@
+install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/1.0.42.0/Include/vulkan DESTINATION include)
+if(WIN32)
+	if("${CMAKE_SIZEOF_VOID_P}" STREQUAL "8")
+		install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/1.0.42.0/Lib/Windows/x64/vulkan-1.lib DESTINATION lib)
+	else()
+		install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/1.0.42.0/Lib/Windows/x86/vulkan-1.lib DESTINATION lib)
+	endif()
+endif(WIN32)

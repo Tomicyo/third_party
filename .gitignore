@@ -1,0 +1,6 @@
+/build/
+/SPIRV-Cross/shaders-msl
+/SPIRV-Cross/shaders
+/SPIRV-Cross/shaders-hlsl
+/SPIRV-Cross/reference
+/SPIRV-Cross/samples

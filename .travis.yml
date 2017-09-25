@@ -1,0 +1,45 @@
+language: cpp
+matrix:
+  include:
+    - compiler: gcc
+      os: linux
+    - compiler: clang
+      os: osx
+
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - gcc-4.8
+    - g++-4.8
+    - clang
+
+osx_image: xcode8.1
+
+
+before_script:
+  - chmod +x build_macos.sh
+  - chmod +x build_ios.sh
+
+install:
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install cmake; fi
+
+script:
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then ./build_linux.sh; fi
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then ./build_macos.sh; fi
+
+branches:
+  only:
+    - master
+
+notifications:
+  email: false
+
+#deploy:
+#  provider: releases
+#  api_key: "86fXefSdIH9LzcmVtZJHK4DGU7+hksosSZSVkrk6mpHQBsXEVHOi4eijG/mQlrfC"
+#  file: ""
+#  skip_cleanup: true
+#  on:
+#    tags: true
