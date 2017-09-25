@@ -33,6 +33,19 @@
 #include <utility>
 #include <vector>
 
+#if !defined(_LIBCPP_STRING) && defined(__ANDROID__)
+namespace std
+{
+	template <typename T>
+	string to_string(T&& value)
+	{
+	    ostringstream os;
+	    os << value;
+	    return os.str();
+	}
+}
+#endif
+
 namespace spirv_cross
 {
 

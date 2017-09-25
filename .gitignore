@@ -4,3 +4,5 @@
 /SPIRV-Cross/shaders-hlsl
 /SPIRV-Cross/reference
 /SPIRV-Cross/samples
+/artifacts/
+*.pyc

@@ -1,4 +1,4 @@
-INSTALL_ROOT=../kaleido3d/Source/ThirdParty_Prebuilt
+INSTALL_ROOT=build
 
 function build()
 {
@@ -14,8 +14,8 @@ build Debug;
 build Release;
 
 cp tools/win_pack.py $INSTALL_ROOT/Linux
-mkdir -p $INSTALL_ROOT/Linux/lib/cmake
-cp tools/third_party.cmake $INSTALL_ROOT/Linux/lib/cmake
+mkdir -p $INSTALL_ROOT/Linux/artifacts/lib/cmake
+cp tools/third_party.cmake $INSTALL_ROOT/Linux/artifacts/lib/cmake
 pushd .
 cd $INSTALL_ROOT/Linux
 python win_pack.py

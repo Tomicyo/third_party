@@ -14,6 +14,7 @@ addons:
     - gcc-4.8
     - g++-4.8
     - clang
+    - ninja-build
 
 osx_image: xcode8.1
 
@@ -21,6 +22,7 @@ osx_image: xcode8.1
 before_script:
   - chmod +x build_macos.sh
   - chmod +x build_ios.sh
+  - chmod +x build_linux.sh
 
 install:
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then brew install cmake; fi
@@ -36,10 +38,11 @@ branches:
 notifications:
   email: false
 
-#deploy:
-#  provider: releases
-#  api_key: "86fXefSdIH9LzcmVtZJHK4DGU7+hksosSZSVkrk6mpHQBsXEVHOi4eijG/mQlrfC"
-#  file: ""
-#  skip_cleanup: true
-#  on:
-#    tags: true
+deploy:
+  provider: releases
+  api_key: "$GH_TOKEN"
+  file: 
+    - "build/Linux/artifacts/third_party_linux.zip"
+    - "artifacts/third_party_darwin.zip"
+  draft: true
+  skip_cleanup: true

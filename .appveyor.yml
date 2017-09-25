@@ -1,27 +1,26 @@
 environment:
-  access_token:
-    secure: '3rF8FPg54v8qs8V8FuPNGnCqm0r7JhLOoZRe4TrLHb94TVTLwHSdkzcH6RauNrD4'
+  ANDROID_NDK_HOME: C:/android-ndk-r15c
+  ANDROID_HOME: C:/android-sdk-windows
   matrix:
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+    
+before_build: tools/appveyor/install_android.bat
 
-build_script: build_windows64.bat nopause
+build_script: 
+  - python build_android_windows.py
 
 artifacts:
-  - path: artifacts
-    name: third_party
+  - path: artifacts/third_party_windows.zip
+  - path: artifacts/third_party_android_arm64-v8a_gnustl_shared.zip
 
-build:
-  parallel: true
-  verbosity: minimal
-
-deploy:
-- provider: GitHub
-  tag: v$(appveyor_build_version)
-  release: v$(appveyor_build_version)
-  description: Windows Release
-  auth_token:
-    secure: '3rF8FPg54v8qs8V8FuPNGnCqm0r7JhLOoZRe4TrLHb94TVTLwHSdkzcH6RauNrD4'
-  artifact: third_party
-  prerelease: false
-  draft: true
-  force_update: true 
+#deploy:
+#- provider: GitHub
+#  tag: v$(appveyor_build_version)
+#  release: v$(appveyor_build_version)
+#  description: Windows Release
+#  auth_token:
+#    secure: '3rF8FPg54v8qs8V8FuPNGnCqm0r7JhLOoZRe4TrLHb94TVTLwHSdkzcH6RauNrD4'
+#  artifact: third_party
+#  prerelease: false
+#  draft: true
+#  force_update: true 

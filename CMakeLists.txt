@@ -20,6 +20,12 @@ add_subdirectory(glslang)
 add_subdirectory(rapidjson)
 add_subdirectory(googletest)
 
+if(NOT ANDROID)
+	add_subdirectory(zlib)
+endif()
+
+add_subdirectory(sqlite3)
+
 if(NOT APPLE)
 	add_subdirectory(vulkan)
 endif()

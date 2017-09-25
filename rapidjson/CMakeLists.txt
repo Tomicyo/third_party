@@ -173,7 +173,7 @@ install(DIRECTORY include/rapidjson
 # Provide config and version files to be used by other applications
 # ===============================
 
-export(PACKAGE ${PROJECT_NAME})
+#export(PACKAGE ${PROJECT_NAME})
 
 # cmake-modules
 CONFIGURE_FILE(${PROJECT_NAME}Config.cmake.in
