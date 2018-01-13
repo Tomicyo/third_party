@@ -1,0 +1,2 @@
+add_executable(deviceid deviceid.c)
+target_link_libraries(deviceid imobiledevice)

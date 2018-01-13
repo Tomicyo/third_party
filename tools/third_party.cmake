@@ -128,6 +128,10 @@ if(WIN32)
     V8::icuuc.dll V8::icui18n.dll
     )
 
+    _imported_target_with_debug_fix(tr plist STATIC)
+    _imported_target_with_debug_fix(tr imobiledevice STATIC)
+    set(IMOBILEDEVICE_LIBRARIES tr::plist tr::imobiledevice)
+
     _imported_target(VK vulkan-1 STATIC)
     set(VULKAN_LIBRARIES VK::vulkan-1)
 
