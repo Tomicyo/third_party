@@ -14,6 +14,7 @@ set(THIRD_PARTY_LIBDIR_DEBUG ${_install_prefix}/lib/${ANDROID_ABI}_${ANDROID_STL
 set(THIRD_PARTY_LIBDIR_RELEASE ${_install_prefix}/lib/${ANDROID_ABI}_${ANDROID_STL}_release)
 endif()
 
+set(THIRD_PARTY_INCLUDE_DIR "${_install_prefix}/include")
 include_directories(${_install_prefix}/include)
 
 macro(_imported_target_properties LIBNS TNAME LIB_TYPE Configuration IMPLIB_NAME)
@@ -151,3 +152,8 @@ endif()
 
 _imported_target(FREETYPE freetype STATIC)
 set(FREETYPE_LIBRARIES FREETYPE::freetype)
+
+if(NOT ANDROID)
+    _imported_target_with_debug_fix(util zlib STATIC)
+    set(ZLIB_LIBRARIES util::zlib)
+endif()
