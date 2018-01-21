@@ -1,5 +1,5 @@
 environment:
-  ANDROID_NDK_HOME: C:/android-ndk-r15c
+  ANDROID_NDK_HOME: C:/android-ndk-r16b
   ANDROID_HOME: C:/android-sdk-windows
   matrix:
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
