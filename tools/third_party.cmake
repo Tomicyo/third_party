@@ -100,9 +100,6 @@ KHR::SPIRV-Tools-comp
 KHR::SPIRV-Tools-opt
 )
 
-_imported_target(SQL SQLite3 STATIC)
-set(SQLITE3_LIB SQL::SQLite3)
-
 if(WIN32)
     macro(_imported_target_only_release LIBNS TNAME)
     add_library(${LIBNS}::${TNAME} SHARED IMPORTED)
@@ -129,16 +126,8 @@ if(WIN32)
     V8::icuuc.dll V8::icui18n.dll
     )
 
-    _imported_target_with_debug_fix(tr plist STATIC)
-    _imported_target_with_debug_fix(tr imobiledevice STATIC)
-    set(IMOBILEDEVICE_LIBRARIES tr::plist tr::imobiledevice)
-
     _imported_target(VK vulkan-1 STATIC)
     set(VULKAN_LIBRARIES VK::vulkan-1)
-
-    _imported_target_only_release(SSL libcrypto)
-    _imported_target_only_release(SSL libssl)
-    set(OPENSSL_LIBRARIES SSL::libcrypto SSL::libssl)
 
 elseif(LINUX)
     find_library(VULKAN_LIB vulkan
@@ -150,10 +139,3 @@ elseif(ANDROID)
     set(VULKAN_LIBRARIES vulkan)
 endif()
 
-_imported_target(FREETYPE freetype STATIC)
-set(FREETYPE_LIBRARIES FREETYPE::freetype)
-
-if(NOT ANDROID)
-    _imported_target_with_debug_fix(util zlib STATIC)
-    set(ZLIB_LIBRARIES util::zlib)
-endif()

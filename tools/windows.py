@@ -44,11 +44,11 @@ def build_x64(config, src, artifact_dir):
     copy_files_by_ext(os.path.join(ins, 'lib'), '.pdb', artifact_libdir)
     copy_files_by_ext(os.path.join(ins, 'bin'), '.dll', artifact_bindir)
 
-def build_win64_instance(need_v8=False, need_openssl=False):
+def build_win64_instance(need_v8=False, need_clibs=False):
     src = os.getcwd()
     artifact_dir = os.path.join(src, 'artifacts', 'win64')
-    if need_openssl:
-        download_and_extract('https://ci.appveyor.com/api/projects/tomicyo/openssl-ci/artifacts/artifacts/openssl_windows_md_shared.zip', artifact_dir)
+    #if need_clibs:
+    #    download_and_extract('https://ci.appveyor.com/api/projects/tomicyo/third-party-clibs/artifacts/build/third_party_clibs_windows.zip', artifact_dir)
     build_x64('debug', src, artifact_dir)
     build_x64('release', src, artifact_dir)
     if need_v8:
